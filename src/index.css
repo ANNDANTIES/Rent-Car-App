@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+.lora-unique {
+    font-family: "Lora", serif;
+    font-optical-sizing: auto;
+    font-weight: 700; /* Replace <weight> with 400, 700, etc. */
+    font-style: normal; /* Change to 'italic' if needed */
+  }
+
+  .playwrite-in-curly {
+    font-family: "Playwrite IN", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .montserrat-simple {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: italic;
+  }
+  

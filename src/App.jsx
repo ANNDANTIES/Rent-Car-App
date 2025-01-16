@@ -5,9 +5,10 @@ import { Route, Routes } from 'react-router-dom'
 import Footer from '../src/components/Footer'
 import Rent from './pages/Rent'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ViewMore from './pages/Viewmore'
 Route
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path='/rent' element={<Rent/>}/>
+        <Route path={'/viewmore/:id'} element={<ViewMore/>}/>
     </Routes>
       </div>
       <Footer/>

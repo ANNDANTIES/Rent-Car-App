@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { showAddDetails } from '../services/allAPI';
 import { Card, Button } from 'react-bootstrap';
+import { deleteDetails } from '../services/allAPI';
+import { Link } from 'react-router-dom';
 
-const View = () => {
+Link
+const View = ({ refreshAddedDetails }) => {
+    const [updateeffects,setupdateeffects]=useState(false);
     const [showresult, setShowResult] = useState([]); // Initialize as an array since you are using `.map`
-
+    
     const displayDetails = async () => {
         try {
             const result = await showAddDetails();
@@ -18,18 +22,25 @@ const View = () => {
             console.log(e);
         }
     };
+    const deleteCard = async(id)=>{
+        console.log("id",id);
+        await deleteDetails(id);
+        displayDetails();
+    }
+    const viewmore = ()=>{
 
+    }
     useEffect(() => {
         displayDetails(); // Invoke the function here
-    }, []); // Dependency array ensures it runs once on component mount
+    }, [refreshAddedDetails,updateeffects]); // Dependency array ensures it runs once on component mount
 
     return (
         <>
-           <div className='container'>
+           <div className='container mt-5'>
                 <div className="row">
                     {showresult.length > 0 ? (
                         showresult.map((item, index) => (
-                            <div key={index} className="col-lg-4 col-md-6 col-sm-12">
+                            <div key={index} className="col-lg-4 col-md-6 col-sm-12 mt-5">
                                 <Card style={{ width: '18rem' }}>
                                     <Card.Img
                                         variant="top"
@@ -41,7 +52,10 @@ const View = () => {
                                         <Card.Text>
                                            {item.description}
                                         </Card.Text>
-                                        <Button variant="primary">View More</Button>
+                                       <div className='d-flex align-items-center justify-content-between p-2'>
+                                        <Button><Link style={{ textDecoration: 'none', color: 'white' }} to={`/viewmore/${item.id}`}>View More</Link></Button>
+                                        <Button onClick={()=>deleteCard(item.id)} style={{ backgroundColor: 'transparent', border: 'none' }} className='btn'><i className="fa-solid fa-trash text-danger"></i></Button>
+                                        </div>
                                     </Card.Body>
                                 </Card>
                             </div>

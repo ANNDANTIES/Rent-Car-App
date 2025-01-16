@@ -5,11 +5,11 @@ import { adddetails } from '../services/allAPI';
 import View from './View';
 const Rent = () => {
     const [show, setShow] = useState(false);
-
+    const [refeshAddedDetails,setrefeshAddedDetails]=useState(false)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [cardetail,setcardetail] = useState({option:"",imgURL:"",videoLink:"",description:""})
-    
+   
 
     const addedDetail=async()=>{
         const {option,imgURL,videoLink,description} =cardetail
@@ -20,7 +20,10 @@ const Rent = () => {
                 const savedDetail = await adddetails(cardetail)
                 if(savedDetail.status>=200 && savedDetail.status<=300){
                   alert("Car Details Added successfully")
+                  setrefeshAddedDetails(!refeshAddedDetails)
                   handleClose()
+                  
+
                 }
                 else{
                   console.log("api error");
@@ -44,7 +47,7 @@ const Rent = () => {
             <h3 className='text-white'>Add Cars To Rent</h3>
             <button onClick={handleShow} className='ms-2 fw-bolder fs-5 border rounded-circle text-white bg-danger p-2'>+</button>
         </div>
-        <View/>
+        <View setrefeshAddedDetails={setrefeshAddedDetails}/>
 
         {/* Modal */}
         <Modal
